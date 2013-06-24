@@ -9,7 +9,7 @@
 </dependency>
 ```
 
-[More Info](/yandex-qatools/matchers-java/)
+[More Info](https://github.com/yandex-qatools/matchers-java/tree/master/webdriver-matchers)
 
 ### Collections Matchers
 ```xml
@@ -20,7 +20,7 @@
 </dependency>
 ```
 
-[More Info](/yandex-qatools/matchers-java/)
+[More Info](https://github.com/yandex-qatools/matchers-java/tree/master/collection-matchers)
 
 ### Matcher Decorators
 ```xml
@@ -30,7 +30,7 @@
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
-[More Info](/yandex-qatools/matchers-java/)
+[More Info](https://github.com/yandex-qatools/matchers-java/tree/master/matcher-decorators)
 
 
 ### Type-casting, Regexp, Exception Matchers && Logical Chaining
