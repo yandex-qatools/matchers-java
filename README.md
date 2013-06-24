@@ -33,13 +33,7 @@
 [More Info](/yandex-qatools/matchers-java/)
 
 
-### Сthul Matchers & Some Other
-
-Contains 
- * Type-casting Matchers
- * Regexp Matchers 
- * Exception Matchers
- * Logical Chaining
+### Type-casting, Regexp, Exception Matchers && Logical Chaining
 
 ```xml
 <dependency>
