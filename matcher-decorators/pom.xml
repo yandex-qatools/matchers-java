@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>webdriver-matchers</artifactId>
-    <name>Yandex QATools WebDriver Matchers</name>
+    <artifactId>matcher-decorators</artifactId>
+    <name>Yandex QATools Matcher Decorators</name>
 
     <dependencies>
         <!-- Dependency for hamcrest usage -->
@@ -22,24 +22,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>1.8.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.yandex.qatools.matchers</groupId>
-            <artifactId>matcher-decorators</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>2.31.0</version>
         </dependency>
     </dependencies>
 

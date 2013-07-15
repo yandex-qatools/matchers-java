@@ -3,3 +3,7 @@ target
 .idea
 *.iml
 out
+#Eclipse files
+.classpath
+.project
+.settings

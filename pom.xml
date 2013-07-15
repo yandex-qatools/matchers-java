@@ -8,17 +8,98 @@
     <artifactId>matchers</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>webdriver-matchers</module>
-        <module>reflection-matchers</module>
         <module>collection-matchers</module>
+        <module>matcher-decorators</module>
     </modules>
 
     <name>Yandex QATools Matchers</name>
+    <url>https://github.com/yandex-qatools/matchers-java/</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <organization>
+        <name>Yandex</name>
+        <url>http://company.yandex.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>git@github.com:yandex-qatools/matchers-java.git</url>
+        <connection>scm:git:git@github.com:yandex-qatools/matchers-java.git</connection>
+        <developerConnection>scm:git:git@github.com:yandex-qatools/matchers-java.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issue Tracker</system>
+        <url>https://github.com/yandex-qatools/matchers-java/issues</url>
+    </issueManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <developers>
+        <developer>
+            <id>eroshenkoam</id>
+            <name>Artem Eroshenko</name>
+        </developer>
+        <developer>
+            <id>AlexanderTolmachev</id>
+            <name>Alexander Tolmachev</name>
+        </developer>
+        <developer>
+            <id>artkoshelev</id>
+            <name>Artem Koshelev</name>
+        </developer>
+        <developer>
+            <id>lanwen</id>
+            <name>Kirill Merkushev</name>
+        </developer>
+    </developers>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Dependency for hamcrest usage -->
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-all</artifactId>
@@ -31,8 +112,7 @@
                 <version>4.11</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
-    
+
 </project>

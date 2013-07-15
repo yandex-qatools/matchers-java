@@ -1,30 +1,40 @@
 package ru.yandex.qatools.matchers.collection;
 
-
+import org.hamcrest.Matcher;
 import org.junit.Test;
-import ru.yandex.qatools.matchers.colection.CollectionMatchers;
-import ru.yandex.qatools.matchers.colection.sort.SortedBy;
-import ru.yandex.qatools.matchers.colection.sort.SortedCriteria;
 
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static ru.yandex.qatools.matchers.collection.ContainsUniqueItems.containsUniqueItems;
 
 /**
  * @author Artem Eroshenko eroshenkoam
  *         4/23/13, 7:38 PM
+ * @author Artem Koshelev artkoshelev
  */
 public class CollectionMatchersTest {
 
     @Test
-    public void sortedByFactoryMethodShouldCreateSortedByMatcher() {
-        SortedCriteria criteria = new SortedCriteria();
-        SortedBy matcher = CollectionMatchers.sortedBy(criteria);
+    public void containsUniqueElementsFactoryMethodReturnsMatcher() {
+        Matcher<Iterable<? extends Object>> matcher = containsUniqueItems();
         assertThat(matcher, not(nullValue()));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void sortedByFactoryMethodWithNullSortedCriteriaShouldProvideNullPointerException() {
-        CollectionMatchers.sortedBy(null);
+    @Test(expected = AssertionError.class)
+    public void assertionShouldThrownWhenDublicatesAppears() {
+        List<String> collectionWithDublicates = asList("veni", "vidi", "veni");
+        assertThat(collectionWithDublicates, containsUniqueItems());
     }
+
+    @Test
+    public void assertionShouldNotBeThrownWhenThereIsNoDublicates() {
+        List<String> collectionWithDublicates = asList("veni", "vidi", "vici");
+        assertThat(collectionWithDublicates, containsUniqueItems());
+    }
+
+
 }
