@@ -6,8 +6,9 @@ import org.hamcrest.*;
 import java.util.List;
 
 import static ch.lambdaj.collection.LambdaCollections.with;
-import static org.hamcrest.Matchers.isIn;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
+import static ru.yandex.qatools.matchers.collection.MismatchHelper.appendMismatch;
+import static ru.yandex.qatools.matchers.collection.WrapperConverter.wrap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,7 +27,7 @@ public class HasSameItemsAsListMatcher<T> extends TypeSafeDiagnosingMatcher<List
     }
 
     public HasSameItemsAsListMatcher<T> useWrapperFactory(WrapperFactory<T> wrapperFactory) {
-        if(wrapperFactory == null) {
+        if (wrapperFactory == null) {
             throw new IllegalArgumentException("Wrapper factory can't be null");
         }
         this.wrapperFactory = wrapperFactory;
@@ -41,13 +42,14 @@ public class HasSameItemsAsListMatcher<T> extends TypeSafeDiagnosingMatcher<List
 
     @Override
     protected boolean matchesSafely(List<? extends T> actual, Description mismatchDescription) {
-        HasSameItemsAsCollectionMatcher.hasSameItemsAsCollection(expected).matches(actual);
-
-        LambdaList<Wrapper<T>> wrappedActual = with(actual).convert(WrapperConverter.wrap(actual, wrapperFactory));
-        LambdaList<Wrapper<T>> wrappedExpected = with(expected).convert(WrapperConverter.wrap(expected, wrapperFactory));
+        LambdaList<Wrapper<T>> wrappedActual = with(actual).convert(wrap(actual, wrapperFactory));
+        LambdaList<Wrapper<T>> wrappedExpected = with(expected).convert(wrap(expected, wrapperFactory));
 
         LambdaList<Wrapper<T>> inActualButNotInExpected = wrappedActual.clone().remove(isIn(wrappedExpected));
         LambdaList<Wrapper<T>> inExpectedButNotInActual = wrappedExpected.clone().remove(isIn(wrappedActual));
+
+        appendMismatch(mismatchDescription, "In Actual but not in Expected", inActualButNotInExpected);
+        appendMismatch(mismatchDescription, "In Expected but not in Actual", inExpectedButNotInActual);
 
         int notsorted = 0;
         if (sortcheck) {
@@ -55,42 +57,25 @@ public class HasSameItemsAsListMatcher<T> extends TypeSafeDiagnosingMatcher<List
                     .remove(sortedEqual(wrappedActual))
                     .remove(not(isIn(wrappedActual)));
             appendMismatch(mismatchDescription, "Not sorted correctly",
-                    notCorrectlySorted.convert(NotSortedCorrectlyStringRepresentation.asStringWithFind(wrappedActual)));
+                    notCorrectlySorted.convert(MismatchHelper.asStringWithFind(wrappedActual)));
             notsorted = notCorrectlySorted.size();
         }
-
-        appendMismatch(mismatchDescription, "In Actual but not in Expected", inActualButNotInExpected);
-        appendMismatch(mismatchDescription, "In Expected but not in Actual", inExpectedButNotInActual);
 
         return inActualButNotInExpected.size() + inExpectedButNotInActual.size() + notsorted == 0;
     }
 
 
-    private void appendMismatch(Description mismatchDescription, String comment, List listToPrint) {
-        if (listToPrint.size() > 0) {
-            mismatchDescription.appendText("\n(").appendText(comment)
-                    .appendText(") [")
-                    .appendValue(listToPrint.size())
-                    .appendText("]:\n")
-                    .appendValueList("-> ", "\n-> ", "", listToPrint);
-        }
-    }
-
     @Override
     public void describeTo(Description description) {
-        description.appendText("Lists contains same items").appendText(sortcheck ? " and sorted equally" : "");
+        description.appendText("lists contains same items").appendText(sortcheck ? " and sorted equally" : "");
     }
 
     private Matcher<Wrapper<T>> sortedEqual(final List<Wrapper<T>> expected) {
-        return new TypeSafeMatcher<Wrapper<T>>() {
+        return new FeatureMatcher<Wrapper<T>, Boolean>(is(true), "", "") {
             @Override
-            protected boolean matchesSafely(Wrapper<T> item) {
+            protected Boolean featureValueOf(Wrapper<T> actual) {
                 //Can be replaced with condition as ~ expected.prev == item.prev && expected.next == item.next
-                return expected.indexOf(item) == item.getPosition();
-            }
-
-            @Override
-            public void describeTo(Description description) {
+                return expected.indexOf(actual) == actual.getPosition();
             }
         };
     }

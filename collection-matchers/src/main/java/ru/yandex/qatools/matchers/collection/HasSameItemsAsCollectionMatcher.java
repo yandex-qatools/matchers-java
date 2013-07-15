@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import static ch.lambdaj.collection.LambdaCollections.with;
 import static org.hamcrest.Matchers.isIn;
+import static ru.yandex.qatools.matchers.collection.MismatchHelper.appendMismatch;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +23,7 @@ public class HasSameItemsAsCollectionMatcher<T> extends TypeSafeDiagnosingMatche
     private Collection<? extends T> expect;
     @SuppressWarnings("unchecked")
     private WrapperFactory<T> wrapperFactory = (WrapperFactory<T>) ObjectMethodsWrapper.standartMethods();
+
 
     public HasSameItemsAsCollectionMatcher(Collection<? extends T> expected) {
         this.expect = expected;
@@ -43,20 +45,9 @@ public class HasSameItemsAsCollectionMatcher<T> extends TypeSafeDiagnosingMatche
     }
 
 
-    @SuppressWarnings("unchecked")
-    private void appendMismatch(Description mismatchDescription, String comment, Collection listToPrint) {
-        if (listToPrint.size() > 0) {
-            mismatchDescription.appendText("\n(").appendText(comment)
-                    .appendText(") [")
-                    .appendValue(listToPrint.size())
-                    .appendText("]:\n")
-                    .appendValueList("-> ", "\n-> ", "", listToPrint);
-        }
-    }
-
     @Override
     public void describeTo(Description description) {
-        description.appendText("collection same as expected");
+        description.appendText("collections contains same items");
     }
 
 
