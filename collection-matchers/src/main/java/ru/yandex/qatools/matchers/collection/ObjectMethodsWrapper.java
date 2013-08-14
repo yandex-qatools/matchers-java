@@ -22,7 +22,7 @@ public class ObjectMethodsWrapper extends Wrapper<Object> implements WrapperFact
         return obj.toString();
     }
 
-    public static WrapperFactory<Object> standartMethods() {
+    public static WrapperFactory<Object> standardMethods() {
         return new ObjectMethodsWrapper();
     }
 }
