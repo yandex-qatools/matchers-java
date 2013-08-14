@@ -8,6 +8,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 /**
+ * @author Innokenty Shuvalov artkoshelev
  * @author Innokenty Shuvalov innokenty-shuvalov
  * @param <T>
  */
@@ -22,8 +23,8 @@ public class ContainsUniqueItems<T> extends TypeSafeMatcher<Iterable<? extends T
 		return Sets.newHashSet(iterable).size() == Lists.newArrayList(iterable).size();
 	}
 
-    @Factory
-    public static <U> Matcher<Iterable<? extends U>> containsUniqueItems() {
-        return new ContainsUniqueItems<U>();
-    }
+	@Factory
+	public static <U> Matcher<Iterable<? extends U>> containsUniqueItems() {
+		return new ContainsUniqueItems<U>();
+	}
 }
