@@ -18,7 +18,7 @@ import static ru.yandex.qatools.matchers.collection.WrapperConverter.wrap;
  */
 public class HasSameItemsAsListMatcher<T> extends TypeSafeDiagnosingMatcher<List<? extends T>> {
     private List<? extends T> expected;
-    private WrapperFactory<T> wrapperFactory = (WrapperFactory<T>) ObjectMethodsWrapper.standartMethods();
+    private WrapperFactory<T> wrapperFactory = (WrapperFactory<T>) ObjectMethodsWrapper.standardMethods();
 
     private boolean sortcheck = false;
 
