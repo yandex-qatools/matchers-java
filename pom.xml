@@ -96,6 +96,11 @@
             <id>lanwen</id>
             <name>Kirill Merkushev</name>
         </developer>
+       <developer>
+            <id>innokenty-shuvalov</id>
+            <name>Innokenty Shuvalov</name>
+        </developer>
+
     </developers>
 
     <dependencyManagement>
