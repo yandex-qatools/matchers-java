@@ -8,7 +8,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 /**
- * @author Innokenty Shuvalov artkoshelev
+ * @author Artem Koshelev artkoshelev
  * @author Innokenty Shuvalov innokenty-shuvalov
  * @param <T>
  */
