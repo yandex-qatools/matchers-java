@@ -1,42 +1,30 @@
 package ru.yandex.qatools.matchers.collection;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeDiagnosingMatcher;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.hamcrest.TypeSafeMatcher;
 
 /**
- * 
  * @author Artem Koshelev artkoshelev
- *
+ * @author Innokenty Shuvalov innokenty-shuvalov
  * @param <T>
  */
-public class ContainsUniqueItems<T> extends TypeSafeDiagnosingMatcher<Iterable<? extends T>> {
+public class ContainsUniqueItems<T> extends TypeSafeMatcher<Iterable<? extends T>> {
 
 	public void describeTo(Description description) {
-		// TODO Auto-generated method stub
-		
+		description.appendText("an iterable object where all elements are different");
 	}
 
 	@Override
-	protected boolean matchesSafely(Iterable<? extends T> collection,
-			Description mismatchDescription) {
-		Set<T> uniqueItems = new HashSet<T>();
-		int size = 0;
-		for (T item : collection) {
-			uniqueItems.add(item);
-			size++;
-		}
-		return uniqueItems.size() == size;
+	protected boolean matchesSafely(Iterable<? extends T> iterable) {
+		return Sets.newHashSet(iterable).size() == Lists.newArrayList(iterable).size();
 	}
 
-    @Factory
-    public static <U> Matcher<Iterable<? extends U>> containsUniqueItems() {
-        return new ContainsUniqueItems<U>();
-    }
-
-
+	@Factory
+	public static <U> Matcher<Iterable<? extends U>> containsUniqueItems() {
+		return new ContainsUniqueItems<U>();
+	}
 }

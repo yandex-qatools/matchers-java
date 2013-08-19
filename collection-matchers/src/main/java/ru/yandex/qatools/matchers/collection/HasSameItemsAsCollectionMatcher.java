@@ -22,7 +22,7 @@ public class HasSameItemsAsCollectionMatcher<T> extends TypeSafeDiagnosingMatche
 
     private Collection<? extends T> expect;
     @SuppressWarnings("unchecked")
-    private WrapperFactory<T> wrapperFactory = (WrapperFactory<T>) ObjectMethodsWrapper.standartMethods();
+    private WrapperFactory<T> wrapperFactory = (WrapperFactory<T>) ObjectMethodsWrapper.standardMethods();
 
 
     public HasSameItemsAsCollectionMatcher(Collection<? extends T> expected) {

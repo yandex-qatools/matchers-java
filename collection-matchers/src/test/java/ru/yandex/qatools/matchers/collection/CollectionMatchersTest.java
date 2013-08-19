@@ -1,6 +1,5 @@
 package ru.yandex.qatools.matchers.collection;
 
-import org.hamcrest.Matcher;
 import org.junit.Test;
 
 import java.util.List;
@@ -19,22 +18,19 @@ import static ru.yandex.qatools.matchers.collection.ContainsUniqueItems.contains
 public class CollectionMatchersTest {
 
     @Test
-    public void containsUniqueElementsFactoryMethodReturnsMatcher() {
-        Matcher<Iterable<? extends Object>> matcher = containsUniqueItems();
-        assertThat(matcher, not(nullValue()));
+	public void containsUniqueElementsFactoryMethodReturnsMatcher() {
+		assertThat(containsUniqueItems(), not(nullValue()));
     }
 
     @Test(expected = AssertionError.class)
-    public void assertionShouldThrownWhenDublicatesAppears() {
-        List<String> collectionWithDublicates = asList("veni", "vidi", "veni");
-        assertThat(collectionWithDublicates, containsUniqueItems());
+    public void assertionShouldBeThrownWhenDuplicatesAreFound() {
+        List<String> collectionWithDuplicates = asList("veni", "vidi", "veni");
+        assertThat(collectionWithDuplicates, containsUniqueItems());
     }
 
     @Test
-    public void assertionShouldNotBeThrownWhenThereIsNoDublicates() {
-        List<String> collectionWithDublicates = asList("veni", "vidi", "vici");
-        assertThat(collectionWithDublicates, containsUniqueItems());
+    public void assertionShouldNotBeThrownWhenThereAreNoDuplicates() {
+        List<String> collectionWithDuplicates = asList("veni", "vidi", "vici");
+        assertThat(collectionWithDuplicates, containsUniqueItems());
     }
-
-
 }

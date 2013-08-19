@@ -1,4 +1,4 @@
-HasSameItemsAsListMatcher & HasSameItemsAsCollectionMatcher
+Collection Matchers
 ==========================
 
 
