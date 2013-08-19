@@ -12,7 +12,7 @@ import static ru.yandex.qatools.matchers.decorators.ConditionMatcherDecorator.de
  * @author Alexander Tolmachev starlight@yandex-team.ru
  *         Date: 28.02.13
  */
-public class MatcherDecoratorsBuilder<T> extends TypeSafeMatcher<T> {
+public final class MatcherDecoratorsBuilder<T> extends TypeSafeMatcher<T> {
     private Matcher<? super T> matcher;
 
     @Factory
