@@ -4,9 +4,11 @@ import ch.lambdaj.function.convert.StringConverter;
 import org.hamcrest.Description;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static java.lang.String.format;
+import static java.util.Collections.frequency;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,26 +16,34 @@ import static java.lang.String.format;
  * Date: 27.05.13
  * Time: 0:30
  */
-public class MismatchHelper<T> implements StringConverter<Wrapper<T>> {
-    private List<Wrapper<T>> listToFind;
+public class MismatchHelper {
 
-    public MismatchHelper(List<Wrapper<T>> listToFind) {
-        this.listToFind = listToFind;
+    public static <T> StringConverter<Wrapper<T>> asStringWithFind(final List<Wrapper<T>> listToFind) {
+        return new StringConverter<Wrapper<T>>() {
+            @Override
+            public String convert(Wrapper<T> nextExpected) {
+                String elementFound = "list has only " + listToFind.size() + " items";
+                if (nextExpected.getPosition() < listToFind.size()) {
+                    elementFound = listToFind.get(nextExpected.getPosition()).toString();
+                }
+                return format("Expected %s on position [%d], but was - %s",
+                        nextExpected, nextExpected.getPosition(), elementFound);
+            }
+        };
     }
 
 
-    public static <T> StringConverter<Wrapper<T>> asStringWithFind(List<Wrapper<T>> listToFind) {
-        return new MismatchHelper<T>(listToFind);
-    }
+    public static <T> StringConverter<Wrapper<T>> asStringWithFrequency(
+            final Collection<Wrapper<T>> actualList,
+            final Collection<Wrapper<T>> expectedList) {
 
-    @Override
-    public String convert(Wrapper nextExpected) {
-        String elementFound = "list has only " + listToFind.size() + " items";
-        if (nextExpected.getPosition() < listToFind.size()) {
-            elementFound = listToFind.get(nextExpected.getPosition()).toString();
-        }
-        return format("Expected %s on position [%d], but was - %s",
-                nextExpected, nextExpected.getPosition(), elementFound);
+        return new StringConverter<Wrapper<T>>() {
+            @Override
+            public String convert(Wrapper<T> nextExpected) {
+                return format("%s - expected [%d] times, but frequency was - [%d]",
+                        nextExpected, frequency(expectedList, nextExpected), frequency(actualList, nextExpected));
+            }
+        };
     }
 
 

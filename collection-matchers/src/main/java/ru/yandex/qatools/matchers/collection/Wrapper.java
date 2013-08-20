@@ -30,6 +30,11 @@ public abstract class Wrapper<T>{
     }
 
     @Override
+    public int hashCode() {
+        return wrapped.hashCode();
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
         Wrapper<T> comparedWrapper = (Wrapper<T>) obj;

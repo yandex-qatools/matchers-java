@@ -1,6 +1,18 @@
 Collection Matchers
 ==========================
 
+Матчер ContainsUniqueItems
+---------------------------------
+
+Матчер проверяет содержание в коллекции только уникальных элементов
+
+```java
+    @Test
+    public void assertionShouldNotBeThrownWhenThereAreNoDuplicates() {
+        List<String> collectionWithDuplicates = asList("veni", "vidi", "vici");
+        assertThat(collectionWithDuplicates, containsUniqueItems());
+    }
+```
 
 Пример использования HasSameItemsAsListMatcher'а
 ---------------------------------
@@ -56,6 +68,16 @@ Expected: Lists contains same items and sorted equally
 Так как java не гарантирует порядка элементов в коллекции, этот матчер умеет сравнивать две коллекции 
 только на отсутствие/присутствие элементов. Синтаксис и вывод аналогичен HasSameItemsAsListMatcher, за исключением того, 
 что на вход поступает коллекция и статический метод называется ``hasSameItemsAsCollection``.
+
+Вывод при этом примерно такой:
+
+```
+Expected: collections contains same items
+     but:
+(Not equal frequency) [<2>]:
+-> "3 - expected [2] times, but frequency was - [1]"
+-> "2 - expected [2] times, but frequency was - [1]"
+```
 
 
 

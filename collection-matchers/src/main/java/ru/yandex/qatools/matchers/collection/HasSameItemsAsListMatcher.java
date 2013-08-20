@@ -3,10 +3,12 @@ package ru.yandex.qatools.matchers.collection;
 import ch.lambdaj.collection.LambdaList;
 import org.hamcrest.*;
 
+import java.util.Collection;
 import java.util.List;
 
 import static ch.lambdaj.collection.LambdaCollections.with;
 import static org.hamcrest.Matchers.*;
+import static ru.yandex.qatools.matchers.collection.HasSameItemsAsCollectionMatcher.hasSameItemsAsCollection;
 import static ru.yandex.qatools.matchers.collection.MismatchHelper.appendMismatch;
 import static ru.yandex.qatools.matchers.collection.WrapperConverter.wrap;
 
@@ -18,6 +20,8 @@ import static ru.yandex.qatools.matchers.collection.WrapperConverter.wrap;
  */
 public class HasSameItemsAsListMatcher<T> extends TypeSafeDiagnosingMatcher<List<? extends T>> {
     private List<? extends T> expected;
+
+    @SuppressWarnings("unchecked")
     private WrapperFactory<T> wrapperFactory = (WrapperFactory<T>) ObjectMethodsWrapper.standardMethods();
 
     private boolean sortcheck = false;
@@ -51,17 +55,23 @@ public class HasSameItemsAsListMatcher<T> extends TypeSafeDiagnosingMatcher<List
         appendMismatch(mismatchDescription, "In Actual but not in Expected", inActualButNotInExpected);
         appendMismatch(mismatchDescription, "In Expected but not in Actual", inExpectedButNotInActual);
 
+        Matcher<Collection<? extends Wrapper<T>>> collectionMatcher = hasSameItemsAsCollection(
+                wrappedExpected.remove(not(isIn(wrappedActual)))
+        );
+        collectionMatcher.describeMismatch(wrappedActual.remove(not(isIn(wrappedExpected))), mismatchDescription);
+
         int notsorted = 0;
         if (sortcheck) {
             LambdaList<Wrapper<T>> notCorrectlySorted = wrappedExpected.clone()
-                    .remove(sortedEqual(wrappedActual))
-                    .remove(not(isIn(wrappedActual)));
+                    .remove(sortedEqual(wrappedActual));
             appendMismatch(mismatchDescription, "Not sorted correctly",
-                    notCorrectlySorted.convert(MismatchHelper.asStringWithFind(wrappedActual)));
+                    notCorrectlySorted.convert(MismatchHelper.asStringWithFind(wrappedActual)).distinct());
             notsorted = notCorrectlySorted.size();
         }
 
-        return inActualButNotInExpected.size() + inExpectedButNotInActual.size() + notsorted == 0;
+        return inActualButNotInExpected.size()
+                + inExpectedButNotInActual.size()
+                + notsorted == 0 && collectionMatcher.matches(wrappedActual);
     }
 
 
@@ -83,6 +93,6 @@ public class HasSameItemsAsListMatcher<T> extends TypeSafeDiagnosingMatcher<List
 
     @Factory
     public static <T> HasSameItemsAsListMatcher<T> hasSameItemsAsList(List<? extends T> correctList) {
-        return new HasSameItemsAsListMatcher<T>(correctList);
+        return new HasSameItemsAsListMatcher<>(correctList);
     }
 }

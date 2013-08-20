@@ -57,4 +57,39 @@ public class HasSameItemsAsCollectionMatcherTest {
         assertThat(actual, hasSameItemsAsCollection(expected));
     }
 
+
+
+    @Test(expected = AssertionError.class)
+    public void collectionsNotEqualsWhenLastElTwiceInActual() throws Exception {
+        List<String> actual = Arrays.asList("1", "2", "3", "3");
+        List<String> expected = Arrays.asList("1", "2", "3");
+
+        assertThat(actual, hasSameItemsAsCollection(expected));
+    }
+
+    @Test(expected = AssertionError.class)
+    public void collectionsNotEqualsWhenLastElTwiceInExpected() throws Exception {
+        List<String> actual = Arrays.asList("1", "2", "3");
+        List<String> expected = Arrays.asList("1", "2", "3", "3");
+
+        assertThat(actual, hasSameItemsAsCollection(expected));
+    }
+
+
+    @Test(expected = AssertionError.class)
+    public void collectionsNotEqualsWhenNotLastElTwiceInActual() throws Exception {
+        List<String> actual = Arrays.asList("1", "2", "2", "3");
+        List<String> expected = Arrays.asList("1", "2", "3");
+
+        assertThat(actual, hasSameItemsAsCollection(expected));
+    }
+
+    @Test(expected = AssertionError.class)
+    public void collectionsNotEqualsWhenNotLastElTwiceInExpected() throws Exception {
+        List<String> actual = Arrays.asList("1", "2", "3");
+        List<String> expected = Arrays.asList("1", "2", "2", "3");
+
+        assertThat(actual, hasSameItemsAsCollection(expected));
+    }
+
 }

@@ -7,5 +7,5 @@ package ru.yandex.qatools.matchers.collection;
  * Time: 13:22
  */
 public interface WrapperFactory<T> {
-    public Wrapper<T> newWrapper();
+    Wrapper<T> newWrapper();
 }
