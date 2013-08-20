@@ -4,7 +4,6 @@ import ch.lambdaj.function.convert.StringConverter;
 import org.hamcrest.Description;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -18,7 +17,8 @@ import static java.util.Collections.frequency;
  */
 public final class MismatchHelper {
     // Util class
-    private MismatchHelper() {}
+    private MismatchHelper() {
+    }
 
     public static <T> StringConverter<Wrapper<T>> asStringWithFind(final List<Wrapper<T>> listToFind) {
         return new StringConverter<Wrapper<T>>() {
