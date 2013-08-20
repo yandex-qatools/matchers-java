@@ -73,6 +73,59 @@ public class HasSameItemsAsListMatcherTest {
     }
 
     @Test(expected = AssertionError.class)
+    public void actualListHasLastItemTwice() throws Exception {
+        List<String> actual = asList("1", "2", "3", "3");
+        List<String> expected = asList("1", "2", "3");
+
+        assertThat(actual, HasSameItemsAsListMatcher.hasSameItemsAsList(expected));
+    }
+
+
+    @Test(expected = AssertionError.class)
+    public void actualListHasItemsTwiceAndNotSameSorted() throws Exception {
+        List<String> actual = asList("1", "2", "2", "3", "3");
+        List<String> expected = asList("1", "2", "3", "3", "2");
+
+        assertThat(actual, HasSameItemsAsListMatcher.hasSameItemsAsList(expected).sameSorted());
+    }
+
+
+    @Test(expected = AssertionError.class)
+    public void actualListHasNotLastItemTwice() throws Exception {
+        List<String> actual = asList("1", "2", "2", "3");
+        List<String> expected = asList("1", "2", "3");
+
+        assertThat(actual, HasSameItemsAsListMatcher.hasSameItemsAsList(expected));
+    }
+
+
+    @Test(expected = AssertionError.class)
+    public void expectedListHasLastItemTwice() throws Exception {
+        List<String> actual = asList("1", "2", "3");
+        List<String> expected = asList("1", "2", "3", "3");
+
+        assertThat(actual, HasSameItemsAsListMatcher.hasSameItemsAsList(expected).sameSorted());
+    }
+
+
+    @Test(expected = AssertionError.class)
+    public void expectedListHasNotLastItemTwice() throws Exception {
+        List<String> actual = asList("1", "2", "3");
+        List<String> expected = asList("1", "2", "2", "3");
+
+        assertThat(actual, HasSameItemsAsListMatcher.hasSameItemsAsList(expected));
+    }
+
+
+    @Test(expected = AssertionError.class)
+    public void expectedListHasNotLastItemTwiceWithSort() throws Exception {
+        List<String> actual = asList("1", "2", "3");
+        List<String> expected = asList("1", "2", "2", "3");
+
+        assertThat(actual, HasSameItemsAsListMatcher.hasSameItemsAsList(expected).sameSorted());
+    }
+
+    @Test(expected = AssertionError.class)
     public void listNotEqualSortedAndStartsWithDifferItemWithSortCheck() throws Exception {
         List<String> actual = asList("4", "1", "2", "3");
         List<String> expected = asList("3", "2", "1");
