@@ -9,7 +9,7 @@ import org.hamcrest.TypeSafeMatcher;
  * @author Alexander Tolmachev starlight@yandex-team.ru
  *         Date: 01.03.13
  */
-public class WaiterMatcherDecorator<T> extends TypeSafeMatcher<T> {
+public final class WaiterMatcherDecorator<T> extends TypeSafeMatcher<T> {
     private final Matcher<? super T> matcher;
     private final Waiter waiter;
 

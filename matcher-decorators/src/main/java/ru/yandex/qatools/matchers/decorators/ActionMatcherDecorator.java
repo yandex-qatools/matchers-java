@@ -9,7 +9,7 @@ import org.hamcrest.TypeSafeMatcher;
  * @author Alexander Tolmachev starlight@yandex-team.ru
  *         Date: 28.02.13
  */
-public class ActionMatcherDecorator<T> extends TypeSafeMatcher<T> {
+public final class ActionMatcherDecorator<T> extends TypeSafeMatcher<T> {
     private final Matcher<? super T> matcher;
     private final Action action;
 
