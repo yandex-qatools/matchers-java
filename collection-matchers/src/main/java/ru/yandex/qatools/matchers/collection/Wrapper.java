@@ -9,8 +9,8 @@ import static org.hamcrest.Matchers.instanceOf;
  * Time: 16:13
  */
 public abstract class Wrapper<T>{
-    protected int position;
-    protected T wrapped;
+    private int position;
+    private T wrapped;
 
     public Wrapper<T> wrap(T wrapped) {
         this.wrapped = wrapped;
