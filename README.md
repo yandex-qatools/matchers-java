@@ -6,7 +6,7 @@ Matchers library to work with WebDriver WebElement interface.
 <dependency>
     <groupId>ru.yandex.qatools.matchers</groupId>
     <artifactId>webdriver-matchers</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 ```
 
@@ -18,7 +18,7 @@ Matchers library to work with collections.
 <dependency>
     <groupId>ru.yandex.qatools.matchers</groupId>
     <artifactId>collection-matchers</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 ```
 
@@ -30,7 +30,7 @@ Decorators which allows handle additional condition issues (e.g. timeouts) direc
 <dependency>
     <groupId>ru.yandex.qatools.matchers</groupId>
     <artifactId>matcher-decorators</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 ```
 [More Info](https://github.com/yandex-qatools/matchers-java/tree/master/matcher-decorators)
