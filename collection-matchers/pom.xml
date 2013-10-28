@@ -39,13 +39,13 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>14.0.1</version>
+            <version>15.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.easytesting</groupId>
             <artifactId>fest-reflect</artifactId>
-            <version>1.4</version>
+            <version>1.4.1</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
