@@ -1,4 +1,5 @@
 # Matchers Java
+[![Build Status](http://ci.qatools.ru/job/yandex-qatools_matchers-java_master-deploy/badge/icon)](http://ci.qatools.ru/job/yandex-qatools_matchers-java_master-deploy/)
 
 ### WebDriver Matchers
 Matchers library to work with WebDriver WebElement interface.
