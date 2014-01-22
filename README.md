@@ -43,7 +43,7 @@ Decorators which allows handle additional condition issues (e.g. timeouts) direc
 <dependency>
     <groupId>org.cthul</groupId>
     <artifactId>cthul-matchers</artifactId>
-    <version>1.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 [More Info](https://github.com/derari/cthul/wiki/Matchers#string-matchers)
