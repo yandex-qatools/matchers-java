@@ -1,4 +1,4 @@
-package ru.ayndex.qatools.matchers.webdriver;
+package ru.yandex.qatools.matchers.webdriver;
 
 import org.hamcrest.Matcher;
 import org.junit.Test;

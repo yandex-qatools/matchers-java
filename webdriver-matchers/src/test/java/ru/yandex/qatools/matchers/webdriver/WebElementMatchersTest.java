@@ -1,11 +1,11 @@
-package ru.ayndex.qatools.matchers.webdriver;
+package ru.yandex.qatools.matchers.webdriver;
 
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
-import static ru.ayndex.qatools.matchers.webdriver.WebElementFactory.createFilledWebElement;
+import static ru.yandex.qatools.matchers.webdriver.WebElementFactory.createFilledWebElement;
 import static ru.yandex.qatools.matchers.webdriver.AttributeMatcher.*;
 import static ru.yandex.qatools.matchers.webdriver.CssValueMatcher.css;
 import static ru.yandex.qatools.matchers.webdriver.CssValueMatcher.cssValue;
