@@ -6,6 +6,7 @@
         <version>1.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
 
     <artifactId>webdriver-matchers</artifactId>
     <name>Yandex QATools WebDriver Matchers</name>
@@ -25,19 +26,16 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>1.9.5</version>
         </dependency>
 
         <dependency>
             <groupId>ru.yandex.qatools.matchers</groupId>
             <artifactId>matcher-decorators</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.34.0</version>
         </dependency>
     </dependencies>
 
