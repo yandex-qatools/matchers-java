@@ -3,6 +3,7 @@ package ru.yandex.qatools.matchers.decorators;
 import org.hamcrest.Description;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.apache.commons.lang3.time.DurationFormatUtils.formatDurationWords;
 
 /**
  * @author Alexander Tolmachev starlight@yandex-team.ru
@@ -38,6 +39,6 @@ public class TimeoutWaiter extends Waiter {
 
     @Override
     public void describeTo(Description description) {
-        description.appendValue(timeout).appendText(" milliseconds");
+        description.appendText(formatDurationWords(timeout, true, true));
     }
 }
