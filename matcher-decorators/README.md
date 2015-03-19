@@ -1,39 +1,37 @@
 Matchers decoration
 -------------------
 
-[Переехало в этот репозиторий из Htmlelements - Issue #29](https://github.com/yandex-qatools/htmlelements/issues/29)
+[Moved here from Htmlelements - Issue #29](https://github.com/yandex-qatools/htmlelements/issues/29)
 
-С помощью этого модуля можно декорировать матчер ожиданием какого-либо события, действием или условием.
+Can be used to decorate matcher with waiter, action or condition.
 
-Декорирование матчера ожиданием по таймауту выглядит так:
+- Decoration of matcher with timeout:
 
 ```java
 assertThat(element, should(exists()).whileWaitingUntil(timeoutHasExpired(SECONDS.toMillis(5))));
 ```
 
-Задекорировать матчер действием можно так:
+- With action:
 
 ```java
 assertThat(element, should(exists()).after(pageRefresh(driver)));
 ```
 
-А добавить проверку условия перед матчером можно так:
+- With condition:
 
 ```java
 assertThat(element, should(hasText("Text")).inCase(element, exists()));
 ```
 
-Эта конструкция эквивалентна добавлению `assumeThat` перед проверкой, но гораздо более компактна и позволяет сочетать
-декорирование условием с декораторами другого типа (см. ниже).
+  `inCase` is same as usage of `assumeThat` before assertion, but uses less code and looks much pretty.
+  Also can be used with combine of action and waitind decorators
 
-Также можно комбинировать декораторы друг с другом. Например:
+Example of all of them used in one statement:
 
 ```java
 assertThat(mailsList, should(hasMailWithSubject("Subject")).after(pageRefresh(driver)).whileWaitingUntil(timeoutHasExpired());
 ```
 
-Эта конструкция будет в течении 30 секунд обновлять страницу каждую секунду и проверять, появилось ли на странице в
-списке писем нужное письмо. Как только письмо появится, матчер закончит свое выполнение и проверка пройдет успешно.
-В противном случае по истечении таймаута будет возвращена ошибка.
+This example will be refresh page with webdriver every second in 30 sec and try to find element «mail» with subject (custom matcher) on this page.
 
 [*MatcherDecoratorsBuilder samples*](https://github.com/yandex-qatools/matchers-java/tree/master/matcher-decorators/src/test/java/ru/yandex/qatools/matchers/decorators)

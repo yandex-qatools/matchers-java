@@ -1,38 +1,33 @@
-Collection Matchers
-==========================
+# Collection Matchers
 
-Матчер ContainsUniqueItems
----------------------------------
+## ContainsUniqueItems#containsUniqueItems
 
-Матчер проверяет содержание в коллекции только уникальных элементов
+Matches only if collection has unique elements
 
 ```java
-    @Test
-    public void assertionShouldNotBeThrownWhenThereAreNoDuplicates() {
-        List<String> collectionWithDuplicates = asList("veni", "vidi", "vici");
-        assertThat(collectionWithDuplicates, containsUniqueItems());
-    }
+@Test
+public void assertionShouldNotBeThrownWhenThereAreNoDuplicates() {
+    List<String> collectionWithDuplicates = asList("veni", "vidi", "vici");
+    assertThat(collectionWithDuplicates, containsUniqueItems());
+}
 ```
 
-Пример использования HasSameItemsAsListMatcher'а
----------------------------------
+## HasSameItemsAsListMatcher#hasSameItemsAsList
 
-Что делать, если есть два списка, и их нужно сравнить? Но при этом недостаточно узнать, что они просто
-имеют разный размер или содержат не все элементы. Что делать, если нужно знать все различия двух списков?
-
-Использовать HasSameItemsAsListMatcher!
+What if we want to compare two lists. But we also want to know all the difference between them.
+HasSameItemsAsListMatcher helps with it:
 
 ```java
-    @Test(expected = AssertionError.class)
-    public void listNotEqualSortedAndNotContainsSomeItems() throws Exception {
-        List<String> actual = asList("1", "2", "3");
-        List<String> expected = asList("3", "2", "1", "4");
+@Test(expected = AssertionError.class)
+public void listNotEqualSortedAndNotContainsSomeItems() throws Exception {
+    List<String> actual = asList("1", "2", "3");
+    List<String> expected = asList("3", "2", "1", "4");
 
-        assertThat(actual, hasSameItemsAsList(expected));
-    }
+    assertThat(actual, hasSameItemsAsList(expected));
+}
 ```
 
-Выведет
+It prints:
 
 ```
 Expected: Lists contains same items
@@ -41,19 +36,19 @@ Expected: Lists contains same items
 -> <4>
 ```
 
-Если нужно еще и проверять что списки идентично отсортированы - укажем это при помощи ``.sameSorted()``
+Also we can check the sorting order with help of mode ``.sameSorted()``
 
 ```java
-    @Test
-    public void listNotSameOrderButEqual() throws Exception {
-        List<String> actual = asList("1", "2", "3");
-        List<String> expected = asList("3", "2", "1");
+@Test
+public void listNotSameOrderButEqual() throws Exception {
+    List<String> actual = asList("1", "2", "3");
+    List<String> expected = asList("3", "2", "1");
 
-        assertThat(actual, hasSameItemsAsList(expected).sameSorted());
-    }
+    assertThat(actual, hasSameItemsAsList(expected).sameSorted());
+}
 ```
 
-Выведет
+It prints
 
 ```
 Expected: Lists contains same items and sorted equally
@@ -63,14 +58,10 @@ Expected: Lists contains same items and sorted equally
 -> "Expected 1 on position [2], but was - 3"
 ```
 
-Матчер HasSameItemsAsCollectionMatcher
----------------------------------
-Так как java не гарантирует порядка элементов в коллекции, этот матчер умеет сравнивать две коллекции 
-только на отсутствие/присутствие элементов. Синтаксис и вывод аналогичен HasSameItemsAsListMatcher, за исключением того, 
-что на вход поступает коллекция и статический метод называется ``hasSameItemsAsCollection``.
+### HasSameItemsAsCollectionMatcher#hasSameItemsAsCollection
 
-Вывод при этом примерно такой:
-
+This matcher is same as matcher for list, but can't compare sorting order because of use jdk collections classes
+It prints:
 ```
 Expected: collections contains same items
      but:
@@ -81,23 +72,19 @@ Expected: collections contains same items
 
 
 
-Расширенное применение HasSameItemsAsListMatcher
----------------------------------
+## Extended usage of HasSameItemsAsListMatcher
 
-Иногда необходимо переопределить вывод каждого элемента в случае ошибки.
-Или задать свой критерий равенства двух объектов между собой. Но что делать, если возможности переопределить эти методы
-у конечного объекта нет? В этом случае необходимо действовать по следующему алгоритму:
+We can define new output of every element that don't matches in case of failure.
+Also we can override the equality method with help of this matcher
 
-* Начальные данные. Предположим нужно сравнить строковые списки игнорируя регистр элементов.
-
+* First, we need to override `equals` behaviour. For example we want to compare two lists with non case sensitive matching:
 ```java
-        List<String> actual = asList("aBc", "DEf", "gHi");
-        List<String> expected = asList("Abc", "DeF", "gHI");
+List<String> actual = asList("aBc", "DEf", "gHi");
+List<String> expected = asList("Abc", "DeF", "gHI");
 ```
 
-* Расширим абстрактный класс Wrapper&lt;String&gt; - параметризовав его по типу элементов - String.
-В наследнике необходимо реализовать 2 метода - условие равенства и строковый вывод каждого элемента.
-
+* Extend abstract class `Wrapper<String>` - don't forget to use generic `String` as we compare strings.
+Now we should override 2 methods - `safelyEquals` and `asString`
 ```java
 public class IgnoreCaseStringWrapper extends Wrapper<String> {
     @Override
@@ -111,27 +98,25 @@ public class IgnoreCaseStringWrapper extends Wrapper<String> {
     }
 }
 ```
-Заботиться о проверках элементов на null при сравнении нет необходимости - родительский класс сделает это
-до вызова переопределенного метода.
+Parent abstract class already check for null all elements before pass it to child methods
 
-* Создадим реализацию интерфейса фабрики врапперов - для чего переопределим всего 1 метод, который будет возвращать
-новые экземпляры врапперов
+* Next, implement interface of wrapper factory - for that override only one method: `Wrapper<String> newWrapper()`
 
 ```java
-    public class IgnoreCaseWrapperFactory implements WrapperFactory<String> {
-        @Override
-        public Wrapper<String> newWrapper() {
-            return new IgnoreCaseStringWrapper();
-        }
-    }
+public class IgnoreCaseWrapperFactory implements WrapperFactory<String> {
+   @Override
+   public Wrapper<String> newWrapper() {
+        return new IgnoreCaseStringWrapper();
+   }
+}
 ```
 
-* Укажем матчеру использовать фабрику при сравнении
+* Then, pass factory object to be used for producing new wrappers
 
 ```java
   @Test
-    public void useCustomWrapper() throws Exception {
-        ...
-        assertThat(actual, hasSameItemsAsList(expected).useWrapperFactory(new IgnoreCaseWrapperFactory()));
-    }
+public void useCustomWrapper() throws Exception {
+   ...
+   assertThat(actual, hasSameItemsAsList(expected).useWrapperFactory(new IgnoreCaseWrapperFactory()));
+}
 ```

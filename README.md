@@ -1,63 +1,37 @@
 # Matchers Java
-[![Build Status](http://ci.qatools.ru/job/yandex-qatools_matchers-java_master-deploy/badge/icon)](http://ci.qatools.ru/job/yandex-qatools_matchers-java_master-deploy/)
+[![release](http://github-release-version.herokuapp.com/github/yandex-qatools/matchers-java/release.svg?style=flat)](https://github.com/yandex-qatools/matchers-java/releases/latest)
+[![Coverage Status](https://coveralls.io/repos/yandex-qatools/matchers-java/badge.svg)](https://coveralls.io/r/yandex-qatools/matchers-java)
 
-### WebDriver Matchers
-Matchers library to work with WebDriver WebElement interface.
+Collection of useful Hamcrest's matchers for everyday testers life.
+
+### Usage:
+Choose one of the modules and add to your `pom.xml`
+
 ```xml
 <dependency>
     <groupId>ru.yandex.qatools.matchers</groupId>
-    <artifactId>webdriver-matchers</artifactId>
-    <version>1.1</version>
+    <artifactId>{module.artifactId}</artifactId>
+    <version>{lib.release.version}</version>
 </dependency>
 ```
 
-[More Info](https://github.com/yandex-qatools/matchers-java/tree/master/webdriver-matchers)
 
-### Collections Matchers
-Matchers library to work with collections.
-```xml
-<dependency>
-    <groupId>ru.yandex.qatools.matchers</groupId>
-    <artifactId>collection-matchers</artifactId>
-    <version>1.1</version>
-</dependency>
-```
+- [**WebDriver Matchers**](https://github.com/yandex-qatools/matchers-java/tree/master/webdriver-matchers)
+  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/webdriver-matchers/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/webdriver-matchers)
+  `webdriver-matchers` - Matchers library to work with WebDriver WebElement interface.
 
-[More Info](https://github.com/yandex-qatools/matchers-java/tree/master/collection-matchers)
+- [**Collections Matchers**](https://github.com/yandex-qatools/matchers-java/tree/master/collection-matchers)
+  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/collection-matchers/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/collection-matchers)
+  `collection-matchers` - Matchers library to work with collections.
 
+- [**Common Matchers**](https://github.com/yandex-qatools/matchers-java/tree/master/common-matchers)
+  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/common-matchers/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/common-matchers)
+  `common-matchers` - Matchers library with matchers for common use cases.
 
-### Common Matchers
-Matchers library with matchers for common use cases.
-```xml
-<dependency>
-    <groupId>ru.yandex.qatools.matchers</groupId>
-    <artifactId>common-matchers</artifactId>
-    <version>1.1</version>
-</dependency>
-```
-
-[More Info](https://github.com/yandex-qatools/matchers-java/tree/master/common-matchers)
+- [**Matcher Decorators**](https://github.com/yandex-qatools/matchers-java/tree/master/matcher-decorators)
+  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/matcher-decorators/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/matcher-decorators)
+  `matcher-decorators` - Decorators which allows handle additional condition issues (e.g. timeouts) directly in the assertion statements.
 
 
-### Matcher Decorators
-Decorators which allows handle additional condition issues (e.g. timeouts) directly in the assertion statement.
-```xml
-<dependency>
-    <groupId>ru.yandex.qatools.matchers</groupId>
-    <artifactId>matcher-decorators</artifactId>
-    <version>1.1</version>
-</dependency>
-```
-[More Info](https://github.com/yandex-qatools/matchers-java/tree/master/matcher-decorators)
-
-
-### Type-casting, Regexp, Exception Matchers && Logical Chaining
-
-```xml
-<dependency>
-    <groupId>org.cthul</groupId>
-    <artifactId>cthul-matchers</artifactId>
-    <version>1.1.0</version>
-</dependency>
-```
-[More Info](https://github.com/derari/cthul/wiki/Matchers#string-matchers)
+### Also:
+  You can find more useful libs and examples on [wiki](https://github.com/yandex-qatools/matchers-java/wiki)
