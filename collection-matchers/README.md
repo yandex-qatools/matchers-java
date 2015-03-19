@@ -114,7 +114,7 @@ public class IgnoreCaseWrapperFactory implements WrapperFactory<String> {
 * Then, pass factory object to be used for producing new wrappers
 
 ```java
-  @Test
+@Test
 public void useCustomWrapper() throws Exception {
    ...
    assertThat(actual, hasSameItemsAsList(expected).useWrapperFactory(new IgnoreCaseWrapperFactory()));
