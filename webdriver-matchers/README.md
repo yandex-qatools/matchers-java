@@ -54,4 +54,6 @@ List of all matchers in module.
 
 ## WebDriver Matchers
 
-... *(will be soon)*
+- `HasCookieMatcher#hasCookie(String)` - matches if WebDriver has such cookie
+- `CanFindElementMatcher#canFindElement(By)` - matches id WD can find element by `By` selector
+- `HasTextMatcher#textOnCurrentPage(Matcher<String>)` & `HasTextMatcher#textOnCurrentPageContains(String)` - matches if page source matches text matcher or contains text
