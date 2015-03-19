@@ -1,56 +1,56 @@
 ## WebElement Matchers
 
-Использовать матчеры легко: 
+Usage:
+
 ```java
 WebElement title = ...;
 assertThat(title, className("big-title");
 ```
-В случае ошибки возникнет исключение: 
+In case of fail it prints:
 ```
 java.lang.AssertionError:
 Expected: element "class" attribute is "big-title"
      but: <Title> "class" attribute is "another-class-name"
 ```
 
-Ниже приведен полный список доступных матчеров.
+List of all matchers in module.
 
 ### Status
-* `exists()` - существование элемента на странице
-* `displayed()` - значение свойства `element.isDisplayed()` положительно
-* `enabled()` - значение свойства `element.isEnabled()` положительно
-* `selected()` - значение свойства `element.isSelected()` положительно
+* `exists()` - element exists on page
+* `displayed()` - element's call `element.isDisplayed()` is true
+* `enabled()` - element's call `element.isEnabled()` is true
+* `selected()` - element's call `element.isSelected()` is true
 
-> Так же, каждый метод может получать на вход как текст, так и матчер для проверки этого текста:
+> Also can be simplified:
 > ```java
 > assertThat(button, value("Start Search"));
 > assertThat(button, value(containsString("Search")));
 > ```
-> Для краткости будут использоваться методы с матчерами.
 
 ### Text
-* `text(Matcher<String> matcher)` - текст элемента удовлетворяет матчеру `matcher`
+* `text(Matcher<String> matcher)` - text property of element matches with `matcher`
 
 ### TagName
-* `tagName(Matcher<String> matcher)` - значение имени тега элемента удовлетворяет матчеру `matcher`
+* `tagName(Matcher<String> matcher)` - tag name of element matches with `matcher`
 
 ### Attrbutes
-* `attr(String name, Matcher<String> matcher)` - значение аттрибута `name` удовлетворяет матчеру `matcher`
-* `action(Matcher<String> matcher)` - значение аттрибута `action` удовлетворяет матчеру `matcher`
-* `alt(Matcher<String> matcher)` - значение аттрибута `alt` удовлетворяет матчеру `matcher`
-* `className(Matcher<String> matcher)` - значение аттрибута `class` удовлетворяет матчеру `matcher`
-* `href(Matcher<String> matcher)` - значение аттрибута `href` удовлетворяет матчеру `matcher`
-* `id(Matcher<String> matcher)` - значение аттрибута `id` удовлетворяет матчеру `matcher`
-* `name(Matcher<String> matcher)` - значение аттрибута `name` удовлетворяет матчеру `matcher`
-* `placeholder(Matcher<String> matcher)` - значение аттрибута `placeholder` удовлетворяет матчеру `matcher`
-* `size(Matcher<String> matcher)` - значение аттрибута `size` удовлетворяет матчеру `matcher`
-* `src(Matcher<String> matcher)` - значение аттрибута `src` удовлетворяет матчеру `matcher`
-* `target(Matcher<String> matcher)` - значение аттрибута `target` удовлетворяет матчеру `matcher`
-* `title(Matcher<String> matcher)` - значение аттрибута `title` удовлетворяет матчеру `matcher`
-* `type(Matcher<String> matcher)` - значение аттрибута `type` удовлетворяет матчеру `matcher`
-* `value(Matcher<String> matcher)` - значение аттрибута `value` удовлетворяет матчеру `matcher`
+* `attr(String name, Matcher<String> matcher)` - attribute `name` matches with `matcher`
+* `action(Matcher<String> matcher)` - attribute `action` matches with `matcher`
+* `alt(Matcher<String> matcher)` - attribute `alt` matches with `matcher`
+* `className(Matcher<String> matcher)` - attribute `class` matches with `matcher`
+* `href(Matcher<String> matcher)` - attribute `href` matches with `matcher`
+* `id(Matcher<String> matcher)` - attribute `id` matches with `matcher`
+* `name(Matcher<String> matcher)` - attribute `name` matches with `matcher`
+* `placeholder(Matcher<String> matcher)` - attribute `placeholder` matches with `matcher`
+* `size(Matcher<String> matcher)` - attribute `size` matches with `matcher`
+* `src(Matcher<String> matcher)` - attribute `src` matches with `matcher`
+* `target(Matcher<String> matcher)` - attribute `target` matches with `matcher`
+* `title(Matcher<String> matcher)` - attribute `title` matches with `matcher`
+* `type(Matcher<String> matcher)` - attribute `type` matches with `matcher`
+* `value(Matcher<String> matcher)` - attribute `value` matches with `matcher`
 
 ### CSS Property
-* `css(String name, Matcher<String> matcher)` - значение css-свойства `name` удовлетворяет матчеру `matcher`
+* `css(String name, Matcher<String> matcher)` - css-property with `name` matches with `matcher`
 
 ## WebDriver Matchers
 

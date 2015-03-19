@@ -1,7 +1,6 @@
 # Common Matchers  
  
-Same as URI matcher
--------------------
+## Same as URI matcher
 
 Usage: 
 ```java
