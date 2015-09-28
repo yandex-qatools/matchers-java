@@ -37,18 +37,21 @@ public abstract class Wrapper<T>{
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        Wrapper<T> comparedWrapper = (Wrapper<T>) obj;
-        T toCompare = comparedWrapper.getWrapped();
+        if (obj instanceof Wrapper) {
+            Wrapper<T> comparedWrapper = (Wrapper<T>) obj;
+            T toCompare = comparedWrapper.getWrapped();
 
-        if (wrapped == null && toCompare == null) {
-            return true;
+            if (wrapped == null && toCompare == null) {
+                return true;
+            }
+
+            if (!(wrapped != null && instanceOf(wrapped.getClass()).matches(toCompare))) {
+                return false;
+            }
+
+            return safelyEquals(this.wrapped, toCompare);
         }
-
-        if (!(wrapped != null && instanceOf(wrapped.getClass()).matches(toCompare))) {
-            return false;
-        }
-
-        return safelyEquals(this.wrapped, toCompare);
+        return false;
     }
 
     @Override
