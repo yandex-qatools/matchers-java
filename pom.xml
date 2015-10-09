@@ -12,6 +12,7 @@
         <module>collection-matchers</module>
         <module>matcher-decorators</module>
         <module>common-matchers</module>
+        <module>nio-matchers</module>
     </modules>
 
     <name>Yandex QATools Matchers</name>
