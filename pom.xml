@@ -5,7 +5,7 @@
     <groupId>ru.yandex.qatools.matchers</groupId>
     <artifactId>matchers</artifactId>
     <packaging>pom</packaging>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
 
     <modules>
         <module>webdriver-matchers</module>
