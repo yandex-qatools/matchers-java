@@ -29,7 +29,7 @@ Choose one of the modules and add to your `pom.xml`
   `common-matchers` - Matchers library with matchers for common use cases.
 
 - [**Java NIO Matchers**](https://github.com/yandex-qatools/matchers-java/tree/master/nio-matchers)
-  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/nio-matchers/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/nio-matchers)
+  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/nio-matchers/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.yandex.qatools.matchers/nio-matchers)  
   `nio-matchers` - Matchers library with matchers for Java NIO.
 
 - [**Matcher Decorators**](https://github.com/yandex-qatools/matchers-java/tree/master/matcher-decorators)  
