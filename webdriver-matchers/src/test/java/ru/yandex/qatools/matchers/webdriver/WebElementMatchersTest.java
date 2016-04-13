@@ -19,6 +19,8 @@ import static ru.yandex.qatools.matchers.webdriver.TextMatcher.text;
 /**
  * @author Artem Eroshenko eroshenkoam
  *         5/24/13, 3:51 PM
+ * @author Artem Koshelev artkoshelev@gmail.com
+ *         4/13/16
  */
 public class WebElementMatchersTest {
 
@@ -129,4 +131,18 @@ public class WebElementMatchersTest {
         assertThat(element, css("width", element.getCssValue("width")));
     }
 
+    @Test
+    public void checkedMatcherShouldCheckCheckedAttribute() {
+        assertThat(element, checked());
+    }
+
+    @Test
+    public void selectedMatcherShouldCheckCheckedAttribute() {
+        assertThat(element, selected());
+    }
+
+    @Test
+    public void focusedMatcherShouldCheckCheckedAttribute() {
+        assertThat(element, focused());
+    }
 }

@@ -11,6 +11,8 @@ import static org.hamcrest.Matchers.is;
 /**
  * @author Artem Eroshenko eroshenkoam
  *         4/23/13, 10:33 PM
+ * @author Artem Koshelev artkoshelev@gmail.com
+ *         4/13/16
  */
 public class AttributeMatcher extends TypeSafeMatcher<WebElement> {
 
@@ -183,4 +185,18 @@ public class AttributeMatcher extends TypeSafeMatcher<WebElement> {
         return size(is(value));
     }
 
+    @Factory
+    public static Matcher<WebElement> checked() {
+        return attr("checked", "true");
+    }
+
+    @Factory
+    public static Matcher<WebElement> selected() {
+        return attr("selected", "true");
+    }
+
+    @Factory
+    public static Matcher<WebElement> focused() {
+        return attr("focused", "true");
+    }
 }
