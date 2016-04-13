@@ -1,7 +1,6 @@
 package ru.yandex.qatools.matchers.webdriver;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import java.util.Arrays;
@@ -13,6 +12,8 @@ import static org.mockito.Mockito.when;
 /**
  * @author Artem Eroshenko eroshenkoam
  *         5/24/13, 3:49 PM
+ * @author Artem Koshelev artkoshelev@gmail.com
+ *         4/13/16
  */
 public class WebElementFactory {
 
@@ -36,11 +37,17 @@ public class WebElementFactory {
         List<String> attributes = Arrays.asList("id", "value", "name", "type", "class", "href",
                 "target", "action", "placeholder", "src", "title");
 
-        for (String name : attributes) {
+        for (String name: attributes) {
             when(element.getAttribute(name)).thenReturn(name + " value");
         }
 
-        for (String name : Arrays.asList("width", "height")) {
+        List<String> booleanAttributes = Arrays.asList("checked", "selected", "focused");
+
+        for (String name: booleanAttributes) {
+            when(element.getAttribute(name)).thenReturn("true");
+        }
+
+        for (String name: Arrays.asList("width", "height")) {
             when(element.getCssValue(name)).thenReturn(name);
         }
         return element;
