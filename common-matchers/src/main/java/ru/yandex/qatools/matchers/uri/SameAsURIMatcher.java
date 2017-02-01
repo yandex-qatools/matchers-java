@@ -2,6 +2,8 @@ package ru.yandex.qatools.matchers.uri;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
+import org.hamcrest.FeatureMatcher;
+import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 import ru.lanwen.diff.uri.UriDiffer;
 import ru.lanwen.diff.uri.core.UriDiff;
@@ -61,5 +63,15 @@ public class SameAsURIMatcher extends TypeSafeDiagnosingMatcher<URI> {
     @Factory
     public static SameAsURIMatcher sameAsURI(URI expectedUri) {
         return new SameAsURIMatcher(expectedUri);
+    }
+
+    @Factory
+    public static Matcher<String> sameAsURI(String expectedUri) {
+        return new FeatureMatcher<String, URI>(sameAsURI(URI.create(expectedUri)), "as string", "as string") {
+            @Override
+            protected URI featureValueOf(String s) {
+                return URI.create(s);
+            }
+        };
     }
 }
