@@ -2,8 +2,7 @@ language: java
 sudo: false
 
 jdk:
- - openjdk7
- - oraclejdk7
+ - oraclejdk8
 
 after_success:
   - mvn clean cobertura:cobertura -Dcobertura.report.format=xml org.eluder.coveralls:coveralls-maven-plugin:3.0.1:report
